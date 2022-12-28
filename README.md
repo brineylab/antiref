@@ -3,5 +3,5 @@
 ![GitHub](https://img.shields.io/github/license/briney/antiref)
 
 
-# antiref
+# AntiRef: reference clusters of human antibody sequences
 AntiRef: reference clusters of human antibody sequences
