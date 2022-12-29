@@ -14,7 +14,7 @@ AntiRef (**Anti**body **Ref**erence Clusters), which was inspired by [UniRef](ht
 ### What is *nested clustering*?
 AntiRef is a series of antibody sequence datasets, each clustered at an identity threshold of decreasing stringency. Rather than clustering the filtered input dataset using each threshold in parallel, we perform the clustering sequentially using the output from the previous round as input for the subsequent clustering iteration:
 
-![iterative clustering schematic](https://www.github.com/briney/blob/main/img/antiref_iterative-clustering.jpg?raw=true)
+![iterative clustering schematic](https://github.com/briney/antiref/blob/main/img/antiref_iterative-clustering.jpg)
 
 This has two primary benefits. First and most importantly, it ensures that cluster and sequence names are conserved across all AntiRef datasets. Each cluster is named after its representative sequence (as determined by `mmseqs`), and by using the output of one clustering round as input for the next, we can ensure that the representative sequence will be present in all previous clustering outputs. For example, if we separately clustered the input dataset at 99% and 98% identity, there is the possibility that some cluster representatives in the 98% dataset are not present in the 99% dataset because these sequences were not selected as representatives for their respective 99% cluster.
 
