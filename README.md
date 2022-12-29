@@ -7,14 +7,16 @@
 
 AntiRef (**Anti**body **Ref**erence Clusters), which was inspired by [UniRef](https://academic.oup.com/bioinformatics/article/23/10/1282/197795), provides clustered datasets of filtered human antibody sequences. The Jupyter notebooks in this repository contain all code necessary to recreate AntiRef entirely from scratch:
 
-* **download**: downloads raw datasets from the Observed Antibody Space (OAS) repository. Note that the combined total of these datasets is quite large -- nearly 4TB after decompression.
-* **filter**: filters the raw sequences to ensure only productive, full-length sequences are used to compile AntiRef.
-* **cluster**: performs a nested clustering procedure using a series of identity thresholds of decreasing stringency. This process is similar to that used by UniRef, although the thresholds were optimized for antibody sequence data rather than general protein seqeunces. 
+* **[download](download.ipynb)**: downloads raw data from the Observed Antibody Space (OAS) repository. Note that the combined total of these datasets is quite large -- nearly 4TB after decompression.
+* **[filter](filter.ipynb)**: filters the raw sequences to ensure only productive, full-length sequences are used to compile AntiRef.
+* **[cluster](cluster.ipynb)**: performs a nested clustering procedure using several identity thresholds. This process is similar to that used by UniRef, although the thresholds were optimized for antibody sequence data rather than general protein seqeunces. 
 
 ### What is *nested clustering*?
+AntiRef is a series of antibody sequence datasets, each clustered at an identity threshold of decreasing stringency. Rather than clustering the filtered input dataset using each threshold in parallel, we perform the clustering sequentially using the output from the previous round as input for the subsequent clustering iteration:
 
+![iterative clustering schematic](https://www.github.com/briney/blob/main/img/antiref_iterative-clustering.jpg?raw=true)
 
-![iterative clustering schematic](https://github.com/briney/antiref/blob/master/img/antiref_iterative-clustering.jpg?raw=true)
+This has two primary benefits. First and most importantly, it ensures that cluster and sequence names are conserved across all AntiRef datasets. Each cluster is named after its representative sequence (as determined by `mmseqs`), and by using the output of one clustering round as input for the next, we can ensure that the representative sequence will be present in all previous clustering outputs. For example, if we separately clustered the input dataset at 99% and 98% identity, there is the possibility that some cluster representatives in the 98% dataset are not present in the 99% dataset because these sequences were not selected as representatives for their respective 99% cluster.
 
 ### Why AntiRef?
 Biases in the human antibody repertoire result in publicly available antibody sequence datasets containing many duplicate or highly similar sequences. These redundant sequences are a barrier to rapid similarity searches and reduce the efficiency with which these datasets can be used to train statistical or machine learning models of human antibodies. Identity-based clustering provides a solution, however, the extremely large size of available antibody repertoire datasets make such clustering operations computationally intensive and potentially out of reach for many scientists and researchers who would benefit from such data.
