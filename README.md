@@ -35,10 +35,16 @@ AntiRef datasets are available on Zenodo and can be downloaded at the following 
 * [AntiRef90](https://doi.org/10.5281/zenodo.7487298): representative sequences resulting from clustering AntiRef92 at 90% identity.
 
 ### How should I cite AntiRef?
+Antiref has been published in [*Bioinformatics Advances*](https://doi.org/10.1093/bioadv/vbad109) and can be cited as:
+```
+Briney B. (2023). AntiRef: reference clusters of human antibody sequences.
+Bioinformatics Advances. https://doi.org/10.1093/bioadv/vbad109.
+```
+
 Zenodo provides a unique DOI for each version of deposited dataset. The DOI of the current version of AntiRef (`v2022.12.14`) is `10.5281/zenodo.7474336`, so an appropriate citation would be:
 
 ```
-Briney, Bryan. (2022). AntiRef: reference clusters of human antibody sequences (v2022.12.14) 
+Briney, Bryan. (2022). AntiRef: reference clusters of human antibody sequences (v2022.12.14). 
 [Data set]. Zenodo. https://doi.org/10.5281/zenodo.7474336
 ```
 
